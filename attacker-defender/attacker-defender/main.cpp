@@ -32,7 +32,7 @@ int main()
 			break;
 		else{
 
-			deleteBadStrategy_average();  //删除双方纯策略集合中的较坏策略
+			//deleteBadStrategy_average();  //删除双方纯策略集合中的较坏策略
 
 			attackerPureStrategies.push_back(attackerBestStrategy);  //将最优纯策略放入纯策略集合
 			defenderPureStrategies.push_back(defenderBestStrategy);		
@@ -62,21 +62,21 @@ int main()
 	//defender
 	for (int i = 0; i < defenderBestStrategy.size(); i++)
 		outstuf << defenderBestStrategy[i] << ",";
-	outstuf << "," << defenderUtility << ",";
+	outstuf << "," << defenderUtility_da << ",";
 
 	outstuf << "," << ",";//空两列
 
 	//attacker
 	for (int i = 0; i < attackerBestStrategy.size(); i++)
 		outstuf << attackerBestStrategy[i] << ",";
-	outstuf << "," << attackerUtility << ",";
+	outstuf << "," << attackerUtility_ad << ",";
 	outstuf << endl;
 	outstuf << endl;
 	outstuf << endl;
 
 	outstuf << "保留的纯策略个数" << "," << "," << LEFT_NUMBER << endl;
 	outstuf << "收敛轮数" << "," << "," << totalRound << endl;
-	outstuf << "插入方收益" << "," << "," << attackerUtility << endl;
+	outstuf << "插入方收益" << "," << "," << attackerUtility_ad << endl;
 	outstuf << endl;
 
 	outstuf << "检测方混合策略" << "," << "," << "," << endl;
