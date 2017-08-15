@@ -8,6 +8,7 @@
 using namespace std;
 
 Engine *ep; //定义Matlab引擎指针
+fstream outstuf;//定义csv文件写入流
 
 #define TOTAL_PATH_NUMBER  6   //程序中的路径数量
 
@@ -210,7 +211,7 @@ void computeMixedStrategy(){
 	mxDestroyArray(z_d);
 
 	//计算defender的混合策略
-	engEvalString(ep, "[x_dm,fval]=linprog(b_am,a_am',f_am,[],[],z_dm,-b_am);fval = -fval; x_dm=x_dm/fval; fval = 1/fval; fval = -fval;");
+	engEvalString(ep, "[x_dm,fval]=linprog(b_am,a_am',f_am,[],[],z_dm,-b_am);fval = -fval; x_dm=x_dm/fval; fval = 1/fval;");
 	mxArray *output_matlab1 = mxCreateDoubleMatrix(defenderPureStrategies.size(), 1, mxREAL);
 	output_matlab1 = engGetVariable(ep, "x_dm");
 	pa = mxGetPr(output_matlab1);
@@ -224,7 +225,7 @@ void computeMixedStrategy(){
 	mxArray *fval_matlab1 = mxCreateDoubleMatrix(1, 1, mxREAL);
 	fval_matlab1 = engGetVariable(ep, "fval");
 	pa = mxGetPr(fval_matlab1);
-	defenderUtility_da = pa[0];
+	defenderUtility_da = -pa[0];
 
 	mxDestroyArray(fval_matlab1);	
 }
@@ -386,7 +387,7 @@ void computeDefenderBestResponse(){
 	mxArray *fval_matlab = mxCreateDoubleMatrix(1, 1, mxREAL);
 	fval_matlab = engGetVariable(ep, "fval_db");
 	pa = mxGetPr(fval_matlab);
-	defenderUtility_Da = pa[0];
+	defenderUtility_Da = -pa[0];
 	mxDestroyArray(fval_matlab);
 }
 
