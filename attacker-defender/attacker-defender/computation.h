@@ -17,7 +17,7 @@ Engine *ep; //定义Matlab引擎指针
 
 #define REWARD  5   //若一个bug被触发，attacker获得的收益
 
-#define LEFT_NUMBER 5  //纯策略空间中保留的个数
+#define LEFT_NUMBER 10  //纯策略空间中保留的个数
 
 double percentage[TOTAL_PATH_NUMBER];  //程序固有结构决定的到达各路径的百分比
 
