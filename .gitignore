@@ -32,9 +32,9 @@
 *.app
 
 *.opensdf
-*.csv
 *.suo
+*.sln
 
-Debug/*
+x64/*
 
-
+*.csv
