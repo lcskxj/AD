@@ -23,7 +23,7 @@ int main()
 	//defender
 	for (int i = 0; i < defenderBestStrategy.size(); i++)
 		outstuf << defenderBestStrategy[i] << ",";
-	outstuf << "," << "," << ",";
+	outstuf << "," << ",";
 	outstuf << "," << ",";//¿ÕÁ½ÁĞ
 	//attacker
 	for (int i = 0; i < attackerBestStrategy.size(); i++)

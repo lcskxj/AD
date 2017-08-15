@@ -31,6 +31,8 @@
 *.out
 *.app
 
+# ckj ignore
+x64/*
 *.opensdf
 *.suo
 *.sln
@@ -44,6 +46,5 @@
 *.user
 *.vcxproj
 
-x64/*
 
-*.csv
+
