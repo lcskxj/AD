@@ -102,9 +102,9 @@ int main()
 		}
 
 		if (totalRound > 100)//防止出现错误时，一直循环
-			cout<<"pause";
+			cout<<"more than 100 rounds";
 	}
-	
+	 
 	outputResult();	//输出最终结果
 	outstuf.close();	  //关闭文件写入流
 	engClose(ep);	//关闭matlab引擎
