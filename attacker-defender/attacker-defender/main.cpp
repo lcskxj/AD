@@ -28,7 +28,7 @@ int main()
 		computeAttackerBestResponse();  //计算最优纯策略
 		computeDefenderBestResponse();
 
-		if (payoff_convergence())  //判断收敛，若双方计算获得的纯策略均已在纯策略集合内，则收敛
+		if (strategy_convergence())  //判断收敛，若双方计算获得的纯策略均已在纯策略集合内，则收敛
 			break;
 		else{
 
