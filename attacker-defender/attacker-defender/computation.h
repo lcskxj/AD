@@ -495,8 +495,8 @@ bool strategy_convergence(){
 
 //根据payoff判断是否收敛
 bool payoff_convergence(){
-	//在对方策略固定的情况下（对方采取混合策略），我方产生的纯策略获得的收益不比混合策略获得的收益大时，即为收敛
-	if ((attackerUtility_Ad <= attackerUtility_ad) && (defenderUtility_Da <= defenderUtility_da))
+	//在对方策略固定的情况下（对方采取混合策略），己方产生的best response获得的收益  没有比  mixed srategy获得的收益  大很多时，即为收敛
+	if ((attackerUtility_Ad - attackerUtility_ad <= 0.00001) && (defenderUtility_Da - defenderUtility_da <= 0.00001))   //better文章中，使用的阈值为0.001
 		return true;
 	else
 		return false;

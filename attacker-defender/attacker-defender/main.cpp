@@ -16,22 +16,23 @@ void init(){
 
 	initPathAndPoint();  //初始化程序的路径和潜在插入点
 	initPureStrategies();  //初始化双方的纯策略集合
+
 	//输出初始时双方的best
+	outstuf << "轮数" << ",";//轮数
 	//defender
-	for (int i = 0; i < defenderBestStrategy.size(); i++)
-		outstuf << defenderBestStrategy[i] << ",";
-	outstuf << "," << "Utility_da" << "," << "Utility_Da" << ",";
+	outstuf << "f1" << "," << "f2" << "," << "f3" << "," << "f4" << "," << "f5" << "," << "f6" << "," << "," << "Ud(a d)" << "," << "Ud(a D)" << ",";
+
 	outstuf << "," << ",";//空两列
+
 	//attacker
-	for (int i = 0; i < attackerBestStrategy.size(); i++)
-		outstuf << attackerBestStrategy[i] << ",";
-	outstuf << "," << "Utility_ad" << "," << "Utility_Ad";
+	outstuf << "a1" << "," << "a2" << "," << "a3" << "," << "a4" << "," << "a5" << "," << "a6" << "," << "," << "Ua(a d)" << "," << "Ua(A d)";
 	outstuf << endl;
 }
 
 //输出双方的best response
 void outputBestResponse(){
 
+	outstuf << totalRound << ",";//轮数
 	//defender
 	for (int i = 0; i < defenderBestStrategy.size(); i++)
 		outstuf << defenderBestStrategy[i] << ",";
@@ -55,18 +56,20 @@ void outputResult(){
 	outstuf << "插入方收益" << "," << "," << attackerUtility_ad << endl;
 	outstuf << endl;
 	//输出检测方策略
-	outstuf << "检测方混合策略" << "," << "," << "," << endl;
+	outstuf << "轮数" << "," << "," << "概率" << "," << "," << "检测方混合策略" << endl;
 	for (int i = 0; i < defenderPureStrategies.size(); i++){
-		outstuf << defenderMixedStrategy[i] << "," << ",";
+		outstuf << i << "," << "," << defenderMixedStrategy[i] << "," << ",";
 		for (int j = 0; j < TOTAL_PATH_NUMBER; j++){
 			outstuf << defenderPureStrategies[i][j] << ",";
 		}
 		outstuf << endl;
 	}
+	outstuf << endl;
+
 	//输出插入方策略
-	outstuf << "插入方混合策略" << "," << "," << "," << endl;
+	outstuf << "轮数" << "," << "," << "概率" << "," << "," << "插入方混合策略" << endl;
 	for (int i = 0; i < attackerPureStrategies.size(); i++){
-		outstuf << attackerMixedStrategy[i] << "," << ",";
+		outstuf << i << "," << "," << attackerMixedStrategy[i] << "," << ",";
 		for (int j = 0; j < TOTAL_PATH_NUMBER; j++){
 			outstuf << attackerPureStrategies[i][j] << ",";
 		}
@@ -90,7 +93,7 @@ int main()
 
 		outputBestResponse();	//将双方最新的best response写入csv文件
 
-		if (strategy_convergence())  //判断收敛，若双方计算获得的纯策略均已在纯策略集合内，则收敛
+		if (payoff_convergence())  //判断收敛，若双方计算获得的纯策略均已在纯策略集合内，则收敛
 			break;
 		else{
 			//deleteBadStrategy_average();  //删除双方纯策略集合中的较坏策略
@@ -98,8 +101,8 @@ int main()
 			defenderPureStrategies.push_back(defenderBestStrategy);		
 		}
 
-		if (totalRound > 200)//防止出现错误时，一直循环
-			break;
+		if (totalRound > 100)//防止出现错误时，一直循环
+			cout<<"pause";
 	}
 	
 	outputResult();	//输出最终结果
